@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MyIndeed.Models.Job>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Jobs</h2>
+
+@if (!Model.Any())
+{
+    <p>No jobs avaiable</p>
+}
+else
+{
+
+    <table id="JobTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Job title</th>
+                <th>Job experience requirement</th>
+                <th>New graduation?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(job.Name, "Description", new { Id = job.Id })</td>
+                    <td>@job.Year</td>
+                    <td>@job.RecentGraduate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a href="/Job/PostJob" class="Button btn btn-primary">Post new job</a>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#JobTable").DataTable();
+        })
+    </script>
+}
+

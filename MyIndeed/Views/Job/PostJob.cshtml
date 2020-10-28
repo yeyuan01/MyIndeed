@@ -1,0 +1,35 @@
+﻿@model MyIndeed.Models.Job
+@{
+    ViewBag.Title = "PostJob";
+}
+
+<h2>PostJob</h2>
+
+@using (Html.BeginForm("PostJob", "Job"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name,"Please enter job name",new { @class="text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Year)
+        @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Year, "Please enter min year required", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description, "Please enter job descriptions", new { @class = "text-danger" })
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.RecentGraduate) Recent Graduate?
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+}
